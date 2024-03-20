@@ -92,7 +92,7 @@ def tap(x, y):
         state['start'] = None
 
     
-#Función que pine nombres
+#Función que pone nombres
 def info_alumnos():
     t.up()
     t.goto(0,190)
