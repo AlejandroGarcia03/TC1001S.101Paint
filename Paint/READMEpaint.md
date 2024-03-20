@@ -65,4 +65,4 @@ def triangle(start, end):
 
 ---
 ## Funcionamiento
-![Funcionamiento](funcionamiento.gif)
+![Funcionamiento](funcionamiento2.gif)
