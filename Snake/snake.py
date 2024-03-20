@@ -20,12 +20,15 @@ aim = vector(0, -10)
 
 t = turtle.Turtle()
 
-
+cont = 10
 def change(x, y):
     """Change snake direction."""
     aim.x = x
     aim.y = y
-
+    global cont
+    cont += 1 
+    if cont == 10:
+        move_food()
 
 def inside(head):
     """Return True if head inside boundaries."""
@@ -65,6 +68,8 @@ def move_food():
     while True:# Generate random positions for food within the boundaries
         food.x = randrange(-19, 19) * 10
         food.y = randrange(-20, 20) * 10
+        global cont 
+        cont = 0
         if food not in snake:
             break
 
