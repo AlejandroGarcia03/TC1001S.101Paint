@@ -13,9 +13,9 @@ from turtle import *
 
 from freegames import vector
 
-
+# Función para dibujar una línea desde el punto de inicio hasta el punto final
 def line(start, end):
-    """Draw line from start to end.
+    """ Draw line from start to end.
     start - vector (x,y)
     end - vector (x,y)
     up() - levanta la pluma
@@ -26,9 +26,9 @@ def line(start, end):
     down()
     goto(end.x, end.y)
 
-
+# Función para dibujar un cuadrado desde el punto de inicio hasta el punto final
 def square(start, end):
-    """Draw square from start to end."""
+    """ Draw square from start to end. """
     up()
     goto(start.x, start.y)
     down()
@@ -41,24 +41,45 @@ def square(start, end):
 
     end_fill()
 
-
+# Función para dibujar un círculo desde el punto de inicio hasta el punto final
 def circle2(start, end):
-    """Draw circle from start to end."""
+    """ Draw circle from start to end. """
     pass  # TODO
 
-
+# Función para dibujar un rectángulo desde el punto de inicio hasta el punto final
 def rectangle(start, end):
-    """Draw rectangle from start to end."""
-    pass  # TODO
+    """ Draw rectangle from start to end. """
+    up()
+    goto(start.x, start.y)
+    down()
+    begin_fill()
+
+    for _ in range(2):  # Repetir dos veces para completar el rectángulo
+        forward(end.x - start.x)
+        left(90)
+        forward(end.y - start.y)
+        left(90)
+
+    end_fill()
 
 
+# Función para dibujar un triángulo desde el punto de inicio hasta el punto final
 def triangle(start, end):
-    """Draw triangle from start to end."""
-    pass  # TODO
+    """ Draw triangle from start to end. """
+    up()
+    goto(start.x, start.y)
+    down()
+    begin_fill()
 
+    for _ in range(3):  # Repetir tres veces para completar el triángulo
+        forward(end.x - start.x)
+        left(120)
 
+    end_fill()
+
+# Función para dibujar un rectángulo desde el punto de inicio hasta el punto final
 def tap(x, y):
-    """Store starting point or draw shape."""
+    """ Store starting point or draw shape. """
     start = state['start']
 
     if start is None:
@@ -71,7 +92,7 @@ def tap(x, y):
 
 
 def store(key, value):
-    """Store value in state at key.
+    """ Store value in state at key.
     Solo se llama cuando se va a modificar el 'shape'    
     """
     state[key] = value
@@ -81,11 +102,11 @@ def store(key, value):
 state = {'start': None, 'shape': square}
 # setup(alto, ancho, x_esq. sup. izq_wind, y_esq. sup. izq_wind)
 setup(420, 420, 0, 0)
-# registra la función que va a atender los eventos del mouse
+# Registra la función que va a atender los eventos del mouse
 onscreenclick(tap)
 listen()
 onkey(undo, 'u')
-# lambda
+# Función Lambda (anónima)
 onkey(lambda: color('red','black'), 'K')
 onkey(lambda: color('white'), 'W')
 onkey(lambda: color('green'), 'G')
