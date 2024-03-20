@@ -77,7 +77,7 @@ def triangle(start, end):
 
     end_fill()
 
-# Función para dibujar un rectángulo desde el punto de inicio hasta el punto final
+# Función que detecta un toque en la pantalla para dibujar una figura 
 def tap(x, y):
     """ Store starting point or draw shape. """
     start = state['start']
@@ -90,7 +90,7 @@ def tap(x, y):
         shape(start, end)
         state['start'] = None
 
-
+# Función que almacena un valor específico
 def store(key, value):
     """ Store value in state at key.
     Solo se llama cuando se va a modificar el 'shape'    
