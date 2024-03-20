@@ -8,6 +8,8 @@ def move_food():
     while True:# Generate random positions for food within the boundaries
         food.x = randrange(-19, 19) * 10
         food.y = randrange(-20, 20) * 10
+        global cont
+        cont = 0
         if food not in snake:
             break
 
