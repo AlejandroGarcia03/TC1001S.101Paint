@@ -1,5 +1,4 @@
-# TC1001S.101Paint
-## Paint Code
+# Paint
 ### Integrantes 
 - **Alejandro Garcia** - A01641920
 - **Cesar Benavides**  - A01285056
@@ -66,4 +65,4 @@ def triangle(start, end):
 
 ---
 ## Funcionamiento
-![Funcionamiento](funcionamiento.gif)
+![Funcionamiento](funcionamiento2.gif)
