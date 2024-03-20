@@ -1,10 +1,10 @@
-# TC1001S.101Paint
-## Paint Code
+# TC1001S.101_Equipo2
 ### Integrantes 
 - **Alejandro Garcia** - A01641920
 - **Cesar Benavides**  - A01285056
 - **Rodrigo Ibarra**   - A01625569
 ---
+# Paint Code
 ## Funciones Añadidas o Modificadas
 ### 1. Circle2: 
 Realiza un circulo dentro del canvas, desde el primer click hasta el segundo, estableciendo el radio
