@@ -25,4 +25,12 @@ def info_alumnos():
     t.goto(0,150)
     t.color('green')
     t.write('Rodrigo Ibarra A01625569', align='left', font=('Arial', 10, 'normal'))
+
+
+# Variables para cambiar el color del snake y de la comida
+colors = ['blue', 'yellow', 'purple', 'orange', 'pink', 'black', 'brown', 'cyan']
+color_index = 0
+color_index = randrange(0, 8) #Randomizar el color
 ```
+
+

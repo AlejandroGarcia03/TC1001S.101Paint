@@ -21,6 +21,10 @@ aim = vector(0, -10)
 t = turtle.Turtle()
 
 cont = 10
+colors = ['blue', 'yellow', 'purple', 'orange', 'pink', 'black', 'brown', 'cyan']
+color_index = 0
+
+cont = 10 #Contador para cambiar la comida de lugar
 def change(x, y):
     """Change snake direction."""
     aim.x = x
@@ -56,9 +60,9 @@ def move():
     clear()
 
     for body in snake:
-        square(body.x, body.y, 9, 'black')
+        square(body.x, body.y, 9, colors[color_index])
 
-    square(food.x, food.y, 9, 'green')
+    square(food.x, food.y, 9, colors[color_index-1])
     update()
     ontimer(move, 100)
 
@@ -66,10 +70,12 @@ def move():
 def move_food():
     """Move food to a valid random position."""
     while True:# Generate random positions for food within the boundaries
-        food.x = randrange(-19, 19) * 10
-        food.y = randrange(-20, 20) * 10
+        food.x = randrange(-18, 18) * 10
+        food.y = randrange(-19, 19) * 10
         global cont 
         cont = 0
+        global color_index
+        color_index = randrange(0, 8)    #Cambiar el indice del color de la serpiente si come
         if food not in snake:
             break
 
