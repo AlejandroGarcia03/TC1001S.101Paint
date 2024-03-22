@@ -11,7 +11,10 @@ from random import *
 from turtle import *
 
 from freegames import path
+from tkinter import messagebox  # Import messagebox from tkinter for showing message
+import turtle
 
+#Trae de libreria freegames el gif de nombre car
 car = path('car.gif')
 # Inicia las cartas del memorama
 tiles = list(range(32)) * 2
@@ -19,6 +22,11 @@ tiles = list(range(32)) * 2
 state = {'mark': None}
 # Esconde las 64 barajas
 hide = [True] * 64
+#pluma que dibuja los nombres
+t=Turtle()
+# Contador de taps
+tap_count = 0  
+
 
 
 def square(x, y):
@@ -32,6 +40,19 @@ def square(x, y):
         forward(50)
         left(90)
     end_fill()
+
+#Función que pone nombres
+def info_alumnos():
+    t.up()
+    t.goto(-65,250)
+    t.color('pink')
+    t.write('Cristian Alejandro Garcia Mendoza A01641920', align='left', font=('Arial', 10, 'normal'))
+    t.goto(-19,230)
+    t.color('white')
+    t.write('Cesar Alejandro Benavides A01285056', align='left', font=('Arial', 10, 'normal'))
+    t.goto(53,210)
+    t.color('yellow')
+    t.write('Rodrigo Ibarra A01625569', align='left', font=('Arial', 10, 'normal'))
 
 
 def index(x, y):
@@ -47,7 +68,9 @@ def xy(count):
 def tap(x, y):
     """Update mark and hidden tiles based on tap."""
     # Posición de la última carta seleccionada
-    spot = index(x, y)
+    if x >=-200 and x<=200 and y>=-200 and y<200:
+        spot = index(x + 5, y + 30)  # Adjust Y coordinate for tap
+
     # Posición de la carta anterior o si no había carta anterior tendrá un None
     mark = state['mark']
     
@@ -61,6 +84,9 @@ def tap(x, y):
         # Ya no existe carta destapada
         state['mark'] = None
 
+     # Verificar si todos los cuadros están destapados
+    if all(not h for h in hide):
+        messagebox.showinfo("¡Felicidades!", f"¡Ganaste un auto!\nTaps: {tap_count}")
 
 def draw():
     """Draw image and tiles."""
@@ -92,7 +118,7 @@ def draw():
 # Revuelve las barajas
 shuffle(tiles)
 # Iniciar dimensiones de la ventana setup(alto, ancho, x_esq. sup. izq_wind, y_esq. sup. izq_wind)
-setup(620, 620, 370, 0)
+setup(620, 620, 570, 0)
 # Color del fondo
 bgcolor("Blue")
 # Agrega el título a la ventana del juego
@@ -104,6 +130,7 @@ hideturtle()
 tracer(False)
 # Espera eventos del mouse
 onscreenclick(tap)
-
+#Escribir nombre de equipo
+info_alumnos()
 draw()
 done()
