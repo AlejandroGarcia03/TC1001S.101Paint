@@ -1,7 +1,7 @@
 # Actividad 2. Modificación del juego Paint.
 ### Integrantes 
-- **Alejandro Garcia** - A01641920
-- **Cesar Benavides**  - A01285056
+- **Alejandro García** - A01641920
+- **César Benavides**  - A01285056
 - **Rodrigo Ibarra**   - A01625569
 ---
 ## Funciones Añadidas o Modificadas
@@ -76,7 +76,7 @@ def info_alumnos():
     t.write('Cristian Alejandro Garcia Mendoza A01641920', align='left', font=('Arial', 10, 'normal'))
     t.goto(0,170)
     t.color('pink')
-    t.write('Cesar Alejandro Benavides A01285056', align='left', font=('Arial', 10, 'normal'))
+    t.write('César Alejandro Benavides Martínez A01285056', align='left', font=('Arial', 10, 'normal'))
     t.goto(0,150)
     t.color('green')
     t.write('Rodrigo Ibarra A01625569', align='left', font=('Arial', 10, 'normal'))
@@ -84,4 +84,4 @@ def info_alumnos():
 
 ---
 ## Funcionamiento
-![Funcionamiento](funcionamiento.gif)
+![Funcionamiento](FuncionamientoPaint.gif)
