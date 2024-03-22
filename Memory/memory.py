@@ -28,6 +28,7 @@ t=Turtle()
 tap_count = 0  
 
 
+
 def square(x, y):
     """Draw white square with black outline at (x, y)."""
     up()
@@ -53,6 +54,7 @@ def info_alumnos():
     t.color('yellow')
     t.write('Rodrigo Ibarra A01625569', align='left', font=('Arial', 10, 'normal'))
 
+
 def index(x, y):
     """Convert (x, y) coordinates to tiles index."""
     return int((x + 200) // 50 + ((y + 200) // 50) * 8)
@@ -68,6 +70,7 @@ def tap(x, y):
     # Posición de la última carta seleccionada
     if x >=-200 and x<=200 and y>=-200 and y<200:
         spot = index(x + 5, y + 30)  # Adjust Y coordinate for tap
+
     # Posición de la carta anterior o si no había carta anterior tendrá un None
     mark = state['mark']
     
@@ -80,11 +83,10 @@ def tap(x, y):
         hide[mark] = False
         # Ya no existe carta destapada
         state['mark'] = None
-    
+
      # Verificar si todos los cuadros están destapados
     if all(not h for h in hide):
         messagebox.showinfo("¡Felicidades!", f"¡Ganaste un auto!\nTaps: {tap_count}")
-
 
 def draw():
     """Draw image and tiles."""
