@@ -67,10 +67,11 @@ def xy(count):
 
 def tap(x, y):
     """Update mark and hidden tiles based on tap."""
+    global tap_count
     # Posición de la última carta seleccionada
     if x >=-200 and x<=200 and y>=-200 and y<200:
         spot = index(x + 5, y + 30)  # Adjust Y coordinate for tap
-
+        tap_count += 1
     # Posición de la carta anterior o si no había carta anterior tendrá un None
     mark = state['mark']
     
@@ -110,6 +111,9 @@ def draw():
         color('black')
         write(tiles[mark], font=('Arial', 30, 'normal'))
 
+    up()
+    goto(-290, 250)
+    write(f"Taps: {tap_count}", font=('Arial', 16, 'normal'))
     # Desactiva los clicks
     # onscreenclick(None)
     update()
