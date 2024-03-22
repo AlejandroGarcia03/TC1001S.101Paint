@@ -14,64 +14,73 @@ from freegames import path
 from tkinter import messagebox  # Import messagebox from tkinter for showing message
 import turtle
 
-#Trae de libreria freegames el gif de nombre car
+# Trae de libreria freegames el gif de nombre car
 car = path('car.gif')
+# Lista de emojis de temática "Tecnología"
+emojis = ['👨‍💻', '📱', '💻', '🖥️', '📀', '🎧', '📷', '📡',
+          '🛰️', '🚀', '👩‍🚀', '👾', '🕹️', '🎮', '🔌', '🧲',
+          '⚡', '🤖', '💡', '📟', '🖨️', '🖲️', '📠', '☎️',
+          '📞', '🌐', '📶‍', '🔬', '🧑‍🦼', '👽', '🦾', '🤖',]
+print(len(emojis))
 # Inicia las cartas del memorama
-tiles = list(range(32)) * 2
+tiles = emojis * 2
 # Indica si tengo una carta destapada
 state = {'mark': None}
 # Esconde las 64 barajas
-hide = [True] * 64
-#pluma que dibuja los nombres
-t=Turtle()
+hide = [True] * len(tiles)
+# Pluma que dibuja los nombres
+info = Turtle()
 # Contador de taps
-tap_count = 0  
+tap_count = 0
+# Contador de parejas encontradas
+pairs_found = 0
 
-
-
+# Función para dibujar un cuadro con color de fondo diferente
 def square(x, y):
     """Draw white square with black outline at (x, y)."""
     up()
-    goto(x, y)
+    goto(x, y - 30)  # Mueve el cuadrado por +30 en el eje Y
     down()
-    color('white', 'gray')
+    color('blue', 'lightgreen')  # Cambiar color de fondo del cuadro
     begin_fill()
     for count in range(4):
         forward(50)
         left(90)
     end_fill()
 
-#Función que pone nombres
+# Función que pone la información de los integrantes
 def info_alumnos():
-    t.up()
-    t.goto(-65,250)
-    t.color('pink')
-    t.write('Cristian Alejandro Garcia Mendoza A01641920', align='left', font=('Arial', 10, 'normal'))
-    t.goto(-19,230)
-    t.color('white')
-    t.write('Cesar Alejandro Benavides A01285056', align='left', font=('Arial', 10, 'normal'))
-    t.goto(53,210)
-    t.color('yellow')
-    t.write('Rodrigo Ibarra A01625569', align='left', font=('Arial', 10, 'normal'))
+    info.up()
+    info.goto(-65,250)
+    info.color('gray')
+    info.write('Cristian Alejandro Garcia Mendoza A01641920', align='left', font=('Arial', 10, 'normal'))
+    info.goto(-19,230)
+    info.color('red')
+    info.write('Cesar Alejandro Benavides A01285056', align='left', font=('Arial', 10, 'normal'))
+    info.goto(53,210)
+    info.color('green')
+    info.write('Rodrigo Ibarra A01625569', align='left', font=('Arial', 10, 'normal'))
 
-
+# Función para convertir coordenadas (x, y) a índice de tiles
 def index(x, y):
     """Convert (x, y) coordinates to tiles index."""
-    return int((x + 200) // 50 + ((y + 200) // 50) * 8)
+    return int((x + 200) // 50 + ((y + 170) // 50) * 8) # Ajusta coordenada en Y
 
-
+# Función para convertir índice de tiles a coordenadas (x, y)
 def xy(count):
     """Convert tiles count to (x, y) coordinates. Retorna la esq inf izq. de la carta"""
-    return (count % 8) * 50 - 200, (count // 8) * 50 - 200
+    return (count % 8) * 50 - 200, (count // 8) * 50 - 170 # Ajusta coordenada en Y
 
-
+# Función para manejar el tap/click del usuario
 def tap(x, y):
     """Update mark and hidden tiles based on tap."""
-    global tap_count
-    # Posición de la última carta seleccionada
+    global tap_count, pairs_found  # Acceder a las variables globales
+    tap_count += 1  # Incrementar el contador de taps
+
     if x >=-200 and x<=200 and y>=-200 and y<200:
-        spot = index(x + 5, y + 30)  # Adjust Y coordinate for tap
-        tap_count += 1
+        # Posición de la última carta seleccionada
+        spot = index(x + 5, y + 30)
+    print(x)
     # Posición de la carta anterior o si no había carta anterior tendrá un None
     mark = state['mark']
     
@@ -84,11 +93,14 @@ def tap(x, y):
         hide[mark] = False
         # Ya no existe carta destapada
         state['mark'] = None
+        pairs_found += 1  # Incrementar contador de parejas encontradas
 
-     # Verificar si todos los cuadros están destapados
+    
+    # Verificar si todos los cuadros están destapados
     if all(not h for h in hide):
-        messagebox.showinfo("¡Felicidades!", f"¡Ganaste un auto!\nTaps: {tap_count}")
+        messagebox.showinfo("¡Felicidades!", f"¡Ganaste un auto!!\nTaps: {tap_count}")
 
+# Función para dibujar el juego
 def draw():
     """Draw image and tiles."""
     clear()
@@ -107,12 +119,15 @@ def draw():
     if mark is not None and hide[mark]:
         x, y = xy(mark)
         up()
-        goto(x + 2, y)
+        goto(x + 5, y - 30)  # Centrar emoji en el cuadro
         color('black')
         write(tiles[mark], font=('Arial', 30, 'normal'))
-
-    up()
-    goto(-290, 250)
+    
+    # Mostrar el número de taps y parejas encontradas en la ventana
+    goto(-200, 210)
+    color('black')
+    write(f"Found Pairs: {pairs_found}", font=('Arial', 16, 'normal'))
+    goto(-200, 230)
     write(f"Taps: {tap_count}", font=('Arial', 16, 'normal'))
     # Desactiva los clicks
     # onscreenclick(None)
@@ -124,7 +139,7 @@ shuffle(tiles)
 # Iniciar dimensiones de la ventana setup(alto, ancho, x_esq. sup. izq_wind, y_esq. sup. izq_wind)
 setup(620, 620, 570, 0)
 # Color del fondo
-bgcolor("Blue")
+bgcolor("lightblue")
 # Agrega el título a la ventana del juego
 title("Cristian García, César Benavides, Rodrigo Ibarra")
 addshape(car)
@@ -134,7 +149,10 @@ hideturtle()
 tracer(False)
 # Espera eventos del mouse
 onscreenclick(tap)
-#Escribir nombre de equipo
-info_alumnos()
+# Llamaa la función draw()
 draw()
+# Función que pone la información de los integrantes
+info_alumnos()
+# Agrega el título a la ventana del juego
+title("Cristian García, César Benavides, Rodrigo Ibarra")
 done()

@@ -12,7 +12,6 @@
 3. Memorama
 
 ## Links
-- Link video Alejandro García - repositorio personal
-- Link video César Benavides - repositorio personal
-- Link video Rodrigo Ibarra - repositorio personal
-
+- Link video Alejandro García - [Repositorio Personal Alejandro](https://github.com/AlejandroGarcia03/TC1001S.101.git)
+- Link video César Benavides - [Repositorio Personal César](https://github.com/A01285056/TC1001S_101_BENAVIDES_CESAR.git)
+- Link video Rodrigo Ibarra - [Repositorio Personal Rodrigo](https://github.com/RodriIbaCas/Hello_Rodrigo.git)
